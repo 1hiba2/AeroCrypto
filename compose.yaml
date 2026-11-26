@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      AERO_DB_PATH: /data/aerocrypto.sqlite3
+    volumes:
+      - telemetry:/data
+    ports:
+      - "127.0.0.1:8000:8000"
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "127.0.0.1:8080:80"
+volumes:
+  telemetry:
